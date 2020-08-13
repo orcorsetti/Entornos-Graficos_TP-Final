@@ -94,7 +94,7 @@ if(!strcmp($_SESSION['user-type'], "admin") == 0){
                     <a href="<?= $namespace?>views/admins/CRUD/administrator.php?editedID=<?= $row['dni']?>" class="btn btn-outline-primary">
                         <i class="fas fa-pen fa-1x"></i>
                     </a>
-                    <a href="<?= $namespace?>controllers/admin_controller.php?deletedID=<?= $row['dni']?>" class="btn btn-outline-danger">
+                    <a href="<?= $namespace?>controllers/admins/admin_controller.php?deletedID=<?= $row['dni']?>" class="btn btn-outline-danger">
                         <i class="fas fa-trash" style="color: red;"></i>
                     </a>
                 </td>
@@ -115,7 +115,7 @@ if(!strcmp($_SESSION['user-type'], "admin") == 0){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    <form action="<?= $namespace?>controllers/admin_controller.php" method="post">
+    <form action="<?= $namespace?>controllers/admins/admin_controller.php" method="post">
         <div class="modal-body">
             <div class="form-group">
                 <label for="dni">DNI:</label>
@@ -170,7 +170,7 @@ include('../../../includes/footer.php');
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    <form action="<?= $namespace?>controllers/admin_controller.php" method="post" class="">
+    <form action="<?= $namespace?>controllers/admins/admin_controller.php" method="post">
         <div class="modal-body">
             <div class="form-group">
                 <label for="dni">DNI:</label>

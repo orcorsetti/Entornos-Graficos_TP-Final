@@ -92,7 +92,7 @@ if(!strcmp($_SESSION['user-type'], "admin") == 0){
                     <a href="<?= $namespace?>views/admins/CRUD/subjects.php?editedID=<?= $row['cod_mat']?>" class="btn btn-outline-primary">
                         <i class="fas fa-pen fa-1x"></i>
                     </a>
-                    <a href="<?= $namespace?>controllers/subject_controller.php?deletedID=<?= $row['cod_mat']?>" class="btn btn-outline-danger">
+                    <a href="<?= $namespace?>admins/controllers/subject_controller.php?deletedID=<?= $row['cod_mat']?>" class="btn btn-outline-danger">
                         <i class="fas fa-trash" style="color: red;"></i>
                     </a>
                 </td>
@@ -113,12 +113,8 @@ if(!strcmp($_SESSION['user-type'], "admin") == 0){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    <form action="<?= $namespace?>controllers/subject_controller.php" method="post">
+    <form action="<?= $namespace?>controllers/admins/subject_controller.php" method="post">
         <div class="modal-body">
-            <div class="form-group">
-                <label for="cod_mat">Codigo materia:</label>
-                <input type="text" name="cod_mat" id="cod_mat" class="form-control" required>
-            </div>
             <div class="form-group">
                 <label for="name">Nombre:</label>
                 <input type="text" name="name" id="name" class="form-control" required>
@@ -164,7 +160,7 @@ include('../../../includes/footer.php');
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    <form action="<?= $namespace?>controllers/subject_controller.php" method="post" class="">
+    <form action="<?= $namespace?>controllers/admins/subject_controller.php" method="post" class="">
         <div class="modal-body">
             <div class="form-group">
                 <label for="cod_mat">Codigo Materia:</label>

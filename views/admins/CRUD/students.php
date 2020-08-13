@@ -94,7 +94,7 @@ if(!strcmp($_SESSION['user-type'], "admin") == 0){
                     <a href="<?= $namespace?>views/admins/CRUD/students.php?editedID=<?= $row['legajo']?>" class="btn btn-outline-primary">
                         <i class="fas fa-pen fa-1x"></i>
                     </a>
-                    <a href="<?= $namespace?>controllers/student_controller.php?deletedID=<?= $row['legajo']?>" class="btn btn-outline-danger">
+                    <a href="<?= $namespace?>controllers/admins/student_controller.php?deletedID=<?= $row['legajo']?>" class="btn btn-outline-danger">
                         <i class="fas fa-trash" style="color: red;"></i>
                     </a>
                 </td>
@@ -115,7 +115,7 @@ if(!strcmp($_SESSION['user-type'], "admin") == 0){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    <form action="<?= $namespace?>controllers/student_controller.php" method="post">
+    <form action="<?= $namespace?>controllers/admins/student_controller.php" method="post">
         <div class="modal-body">
             <div class="form-group">
                 <label for="legajo">Legajo:</label>
@@ -170,7 +170,7 @@ include('../../../includes/footer.php');
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    <form action="<?= $namespace?>controllers/student_controller.php" method="post" class="">
+    <form action="<?= $namespace?>controllers/admins/student_controller.php" method="post" class="">
         <div class="modal-body">
             <div class="form-group">
                 <label for="legajo">Legajo:</label>

@@ -19,12 +19,12 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container">
             <div class="col-2">
-                <a class="navbar-brand" href="http://localhost/TP-Sitio/index.php">
+                <a class="navbar-brand" href="<?= $namespace?>index.php">
                     <img src="https://logosrated.net/wp-content/uploads/parser/UTN-Logo-1.png" width="40" height="40" class="d-inline-block align-top" alt="Logo UTN" loading="lazy">
                 </a>
             </div>
             <div class="col-8">
-                <a class="navbar-brand h1" href="http://localhost/TP-Sitio/index.php">Modulo de Aviso de Consultas</a>
+                <a class="navbar-brand h1" href="<?= $namespace?>index.php">Modulo de Aviso de Consultas</a>
             </div>
 <?php
     if(isset($_SESSION['user'])){
