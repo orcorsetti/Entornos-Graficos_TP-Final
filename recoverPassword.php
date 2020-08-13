@@ -17,13 +17,19 @@ if(!empty($_POST)){
    
     $query="SELECT * FROM `docentes` WHERE email='$email' ";
     $result=$conn->query($query) or die($conn->error);
+    $query="SELECT * FROM `administradores` WHERE email='$email' ";
+    $result2=$conn->query($query) or die($conn->error);
+
     unset($_SESSION['CODIGO']);
-    if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) > 0 || mysqli_num_rows($result2) > 0  ) {
 
         $codigo = mt_random_int(1000,10000000);
         $query = "UPDATE `docentes` SET `recupera_contraseña` = $codigo WHERE `docentes`.`email` = '$email';";
         $conn->query($query) or die($conn->error);
         
+        $query = "UPDATE `administradores` SET `recupera_contraseña` = $codigo WHERE `administradores`.`email` = '$email';";
+        $conn->query($query) or die($conn->error);
+
         $name="Recover Password";
         $asunto="Recover Password";
         $msg = ("Para poder restablecer la contraseña de su cuenta del módulo de consultas ingrese el siguiente código que le damos a continuacion: "."$codigo");
@@ -60,6 +66,8 @@ if(!empty($_POST)){
         </div>
         <?php
     } 
+
+
 }
 include('./includes/footer.php')
 

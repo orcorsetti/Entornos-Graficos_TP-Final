@@ -51,7 +51,7 @@ if(!strcmp($_SESSION['user-type'], "admin") == 0){
 ?>
 <div class="container">
     <div class="alert alert-<?= $_SESSION['message-type']?> alert-dismissible fade show" role="alert">
-        <strong>Error:</strong> <?= $_SESSION['message']?>
+        <strong></strong> <?= $_SESSION['message']?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -131,7 +131,7 @@ if(!strcmp($_SESSION['user-type'], "admin") == 0){
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" name="email" id="email" class="form-control" required>
+                <input type="email" name="email" id="email" class="form-control" required>
             </div>
         </div>
         <div class="modal-footer">
@@ -174,7 +174,7 @@ include('../../../includes/footer.php');
         <div class="modal-body">
             <div class="form-group">
                 <label for="dni">DNI:</label>
-                <input type="text" name="dni" id="dni" class="form-control" value="<?= $user['dni']?>" required>
+                <input type="text" name="dni" id="dni" class="form-control" value="<?= $user['dni']?>" readonly="readonly" required>
             </div>
             <div class="form-group">
                 <label for="name">Nombre:</label>
@@ -186,7 +186,7 @@ include('../../../includes/footer.php');
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" name="email" id="email" class="form-control" value="<?= $user['email']?>" required>
+                <input type="text" name="email" id="email" class="form-control" value="<?= $user['email']?>" readonly="readonly" required>
             </div>
         </div>
         <div class="modal-footer">

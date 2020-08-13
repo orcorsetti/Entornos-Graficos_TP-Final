@@ -8,6 +8,9 @@ $password1=$_SESSION['Contraseña'];
 
 $query="UPDATE `docentes` SET `contraseña` = '$password1' WHERE `docentes`.`recupera_contraseña` ='$code'";
 $conn->query($query) or die($conn->error);
+$query="UPDATE `administradores` SET `contraseña` = '$password1' WHERE `administradores`.`recupera_contraseña` ='$code'";
+$conn->query($query) or die($conn->error);
+
 echo('Contraseña cambiada exitosamente');
 ?>
 <div class="container">

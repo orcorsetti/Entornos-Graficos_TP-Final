@@ -13,7 +13,11 @@ if (!isset($_SESSION['CODIGO'])) {
 
 $query="SELECT * FROM `docentes` WHERE recupera_contraseña='$code' ";
 $result=$conn->query($query) or die($conn->error);
-if (mysqli_num_rows($result) > 0) {
+
+$query="SELECT * FROM `administradores` WHERE recupera_contraseña='$code' ";
+$result2=$conn->query($query) or die($conn->error);
+
+if (mysqli_num_rows($result) > 0 || mysqli_num_rows($result2) > 0) {
     unset($password1,$password2);
     ?>
     <div class="container">
