@@ -26,35 +26,39 @@
     
                     $rows = $worksheet-> toArray();
                     foreach ($rows as $row) {
-                        
-                        if(count($row) !== 5){
-                            if(isset($row[0]) || isset($row[1]) || isset($row[2]) || isset($row[3]) || isset($row[4])){
-                                array_push($failedUpdates, $row);
+                        if($row[0] !== NULL || $row[1] !== NULL || $row[2] !== NULL || $row[3] !== NULL || $row[4] !== NULL){
+                            $insert = true;
+                            if(count($row) !== 5){
+                                    array_push($failedUpdates, $row);
+                                    $insert = false;
+                                }
+                            $query = "SELECT * FROM mat_doc WHERE cod_mat=$row[0] AND dni=$row[1]";
+                            $result = $conn-> query($query);
+                            if($result -> num_rows == 0){
+                                if(controlaDependencias($row, $conn)){
+                                    $query = "INSERT INTO mat_doc(cod_mat, dni) VALUES ($row[0], $row[1])";
+                                    $conn -> query($query);
+                                    if($conn->errno){
+                                        throw new Exception("Error al insertar los datos en la base de datos: ".$conn->error);
+                                    }
+                                } else{
+                                    array_push($failedUpdates, $row);
+                                    $insert = false;
+                                }
                             }
-                        }
-                        $query = "SELECT * FROM mat_doc WHERE cod_mat=$row[0] AND dni=$row[1]";
-                        $result = $conn-> query($query);
-                        if($result -> num_rows == 0){
-                            if(controlaDependencias($row, $conn)){
-                                $query = "INSERT INTO mat_doc(cod_mat, dni) VALUES ($row[0], $row[1])";
+                            if($insert){
+                                $query = "SELECT * FROM consultas WHERE cod_mat='$row[0]' AND dni='$row[1]'";
+                                $result = $conn->query($query);
+                                if($result -> num_rows == 0) {
+                                    $query = "INSERT INTO consultas(lugar, hora, dia_semana, cod_mat, dni) VALUES ('$row[4]', '$row[3]', '$row[2]', '$row[0]', '$row[1]')";
+                                } else {
+                                    $query = "UPDATE consultas SET lugar= '$row[4]' , hora = '$row[3]', dia_semana = '$row[2]' WHERE cod_mat = '$row[0]' AND dni = '$row[1]'";
+                                }
                                 $conn -> query($query);
                                 if($conn->errno){
-                                    throw new Exception("Error al insertar los datos en la base de datos: ".$conn->error);
+                                    throw new Exception("Error al insertar los datos: ".$conn->error);
                                 }
-                            } else{
-                                array_push($failedUpdates, $row);
                             }
-                        }
-                        $query = "SELECT * FROM consultas WHERE cod_mat='$row[0]' AND dni='$row[1]'";
-                        $result = $conn->query($query);
-                        if($result -> num_rows == 0) {
-                            $query = "INSERT INTO consultas(lugar, hora, dia_semana, cod_mat, dni) VALUES ('$row[4]', '$row[3]', '$row[2]', '$row[0]', '$row[1]')";
-                        } else {
-                            $query = "UPDATE consultas SET lugar= '$row[4]' , hora = '$row[3]', dia_semana = '$row[2]' WHERE cod_mat = '$row[0]' AND dni = '$row[1]'";
-                        }
-                        $conn -> query($query);
-                        if($conn->errno){
-                            throw new Exception("Error al insertar los datos 2: ".$conn->error);
                         }
                     }
                     if(count($failedUpdates) == 0){

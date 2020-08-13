@@ -28,19 +28,18 @@ if(isset($_SESSION['updateError'])){
 if(isset($_SESSION['message'])){
 ?>
 <div class="container">
-<div class="container">
-                <div class="alert alert-<?= $_SESSION['message-type']?> alert-dismissible fade show" role="alert">
-                    <?= $_SESSION['message']?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
+    <div class="alert alert-<?= $_SESSION['message-type']?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message']?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
 <?php
             unset($_SESSION['message']);
             unset($_SESSION['message-type']);
 }
-if(isset($_SESSION['failedUpdates'])){
+if(isset($_SESSION['failedUpdates']) && count($_SESSION['failedUpdates'])>0){
     $failedUpdates = $_SESSION['failedUpdates'];
 ?>
 <div class="container">
@@ -71,8 +70,12 @@ if(isset($_SESSION['failedUpdates'])){
 ?>
     </tbody>
     </table>
+    <div class="row justify-content-center">
+        <a href="<?= $namespace?>" class="btn btn-link"> Volver al menu principal</a>
+    </div>
 </div>
 <?php
+unset($_SESSION['failedUpdates']);
 } else {
 ?>
 <div class="container">
@@ -92,7 +95,7 @@ if(isset($_SESSION['failedUpdates'])){
             </form>
         </div>  
     </div>
-    <h4>Formato Predefinido</h3>
+    <h4>Formato Predefinido</h4>
     <div class="col-6">
         <table class="table table-bordered table-sm">
             <thead class="bg-primary text-white">
@@ -109,14 +112,14 @@ if(isset($_SESSION['failedUpdates'])){
                     <td>2</td>
                     <td>40363860</td>
                     <td>1</td>
-                    <td>15:00</td>
+                    <td>03:00PM</td>
                     <td>5to Piso</td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>35698740</td>
                     <td>5</td>
-                    <td>08:00</td>
+                    <td>08:30AM</td>
                     <td>Sala de Profesores</td>
                 </tr>
                 <tr>
