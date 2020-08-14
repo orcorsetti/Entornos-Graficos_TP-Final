@@ -30,7 +30,7 @@
     if(isset($_SESSION['user'])){
 ?>
             <div class="col-2">
-                <a class="nav-link" href="profile.php">
+                <a class="nav-link" href="<?= $namespace?>profile.php">
                     <i class="fa fa-user fa-3x" aria-hidden="true" style="color:black"></i>
                 </a>
             </div>

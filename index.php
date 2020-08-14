@@ -1,6 +1,5 @@
 <?php
     include('./database/db.php');
-    //session_unset();
 
     include('./includes/header.php');
     include('./includes/nav.php');
