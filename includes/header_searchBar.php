@@ -1,4 +1,22 @@
-<?php $namespace = "http://localhost/Entornos-Graficos_TP-Final/"?>
+<?php 
+$namespace = "http://localhost/Entornos-Graficos_TP-Final/";
+
+if(isset($_POST['searchBar'])){
+    if(isset($_POST['searchInput'])){
+        $_SESSION['searchBar'] = $_POST['searchInput'];
+    }
+}
+
+if (isset($_GET['unsetSearchBar'])){
+    $filter = $_GET['unsetSearchBar'];
+    if (isset($_SESSION[$filter])){
+        unset($_SESSION[$filter]);
+        $url = strtok($_SERVER['PHP_SELF'], '?');
+        header('Location: '.$url);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +27,7 @@
     <!-- Boostrap 4 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/bdd7793af3.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- NavBar -->
@@ -23,10 +41,17 @@
             <div class="col-3">
                 <a class="navbar-brand h1" href="<?= $namespace?>">Modulo de Aviso de Consultas</a>
             </div>
-            <div class="col-4">
+            <div class="col-5">
                 <form class="form-inline my-2 my-lg-0" action="" method="POST">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" name="searchBar" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="search" name="searchInput" value="<?= isset($_SESSION['searchBar'])? $_SESSION['searchBar'] : ""?>" placeholder="Search" required aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" name="searchBar" type="submit">Buscar</button>
+<?php
+    if(isset($_SESSION['searchBar'])){
+?>
+            <a href="<?= $_SERVER['PHP_SELF']?>?unsetSearchBar=searchBar" class="btn btn-outline-danger my-2 my-sm-0">Quitar</a>
+<?php
+    }
+?>
                 </form>
             </div>
             <div class="col-1">

@@ -1,6 +1,6 @@
 <?php
     include('./database/db.php');
-
+    $_SESSION['searchBar']="";
     include('./includes/header.php');
     include('./includes/nav.php');
 
