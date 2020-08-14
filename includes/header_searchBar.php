@@ -1,5 +1,4 @@
-<?php include('./database/db.php');?>
-
+<?php $namespace = "http://localhost/Entornos-Graficos_TP-Final/"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,21 +16,21 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container">
             <div class="col-2">
-                <a class="navbar-brand" href="http://localhost/TP-Sitio/index.php">
+                <a class="navbar-brand" href="<?= $namespace?>">
                     <img src="https://logosrated.net/wp-content/uploads/parser/UTN-Logo-1.png" width="40" height="40" class="d-inline-block align-top" alt="Logo UTN" loading="lazy">
                 </a>
             </div>
             <div class="col-3">
-                <a class="navbar-brand h1" href="http://localhost/TP-Sitio/index.php">Modulo de Aviso de Consultas</a>
+                <a class="navbar-brand h1" href="<?= $namespace?>">Modulo de Aviso de Consultas</a>
             </div>
             <div class="col-4">
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0" action="" method="POST">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" name="searchBar" type="submit">Search</button>
                 </form>
             </div>
             <div class="col-1">
-                <a class="nav-link" href="profile.php">
+                <a class="nav-link" href="<?= $namespace?>profile.php">
                     <i class="fa fa-user fa-3x" aria-hidden="true" style="color:black"></i>
                 </a>
             </div>

@@ -1,6 +1,6 @@
 <?php
     include('../../database/db.php');
-    include('../../includes/header.php');
+    include('../../includes/header_searchBar.php');
     include('../../includes/nav.php');
 ?>
 <div class="container">
