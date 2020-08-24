@@ -25,7 +25,7 @@
         $query_where = "";
         $query_inner = " 
                         INNER JOIN materias mat ON mat.cod_mat = con.cod_mat 
-                        INNER JOIN docentes doc ON doc.dni = con.dni 
+                        INNER JOIN docentes doc ON doc.dni = con.dni
                         INNER JOIN incripciones insc ON insc.cod_con = con.cod_con";
 
         if (isset($_GET['setSubjectFilter'])){
@@ -190,7 +190,7 @@
         } else {
             if($result-> num_rows == 0){
 ?>
-<div class="col-8">
+    <div class="col-8">
         <div class="alert alert-warning" role="alert">
             No hay consultas que coincidan.
         </div>
@@ -222,11 +222,33 @@
                         <td> <small><?=$row[4]?></small></td>
                         <td> <small><?=$row[5]?></small></td>
                         <td> 
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#studentsModal">
+                            <a href="<?= $_SERVER['PHP_SELF']?>?consult=<?=$row[6]?>&date=<?=$row[3]?>" class="btn btn-link">
                                 <small>Ver Alumnos</small>
-                            </button>
+                            </a>
                         </td>
                     </tr>
+<?php
+
+?>
+<?php } ?>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<?php
+        }
+    }
+}
+
+include('../../includes/footer.php');
+         
+    if(isset($_GET['date'])&&isset($_GET['consult'])){
+?>
+
 <div class="modal fade" id="studentsModal" tabindex="-1" aria-labelledby="studentsModalLabel" aria-hidden="true">
     <div class="modal-dialog">  
     <div class="modal-content">
@@ -241,14 +263,13 @@
 <?php
     $studentsQuery = "SELECT insc.legajo, al.nombre, al.apellido FROM incripciones insc 
                         INNER JOIN alumnos al ON al.legajo = insc.legajo 
-                        WHERE insc.cod_con = '".$row[6]."' AND insc.fecha_con = '".$row[3]."'";
+                        WHERE insc.cod_con = '".$_GET['consult']."' AND insc.fecha_con = '".$_GET['date']."'";
     $resultStudents = $conn -> query($studentsQuery);
     while($student = $resultStudents->fetch_array()){
 ?>
         <li class="list-group-item"><?= $student[0]?> - <?=$student[1]." ".$student[2]?></li>
 <?php
     }
-
 ?>
       </ul>
       </div>
@@ -258,21 +279,11 @@
     </div>
   </div>
 </div>
-<?php } ?>
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+
+
+<script type="text/javascript">
+    $('#studentsModal').modal('show');
+</script>
 <?php
             }
-        }
-?>
-
-
-<?php
-    }
-    include('../../includes/footer.php');
 ?>

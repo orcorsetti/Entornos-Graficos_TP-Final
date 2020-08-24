@@ -29,7 +29,7 @@ if (isset($_GET['unsetSearchBar'])){
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/bdd7793af3.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <!-- NavBar -->
     <nav class="navbar navbar-light bg-light">
         <div class="container">
